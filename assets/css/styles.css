@@ -543,6 +543,81 @@ li + li {
   transform: translateY(0);
 }
 
+/* Call for Papers popup (modal) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  width: 100%;
+  max-width: 720px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.5rem 1.25rem;
+  position: relative;
+  transform: translateY(12px);
+  transition: transform 0.25s ease-out;
+}
+
+.modal-overlay.is-open .modal {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  background-color: #ffffff;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal h3 {
+  font-family: var(--font-serif);
+  color: var(--primary-color);
+  margin: 0 2rem 0.75rem 0;
+}
+
+.modal p {
+  margin: 0 0 0.75rem 0;
+  color: var(--muted-text-color);
+}
+
+.call-for-papers-deadline {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.call-for-papers-email-link {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
 .site-footer {
   border-top: 1px solid var(--border-color);
   background-color: #ffffff;

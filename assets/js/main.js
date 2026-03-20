@@ -17,6 +17,50 @@ document.addEventListener("DOMContentLoaded", () => {
     currentYearSpan.textContent = new Date().getFullYear().toString();
   }
 
+  const callForPapersOverlay = document.getElementById("call-for-papers-overlay");
+  const callForPapersOpenBtn = document.getElementById("call-for-papers-open");
+  const callForPapersCloseBtn = callForPapersOverlay
+    ? callForPapersOverlay.querySelector(".modal-close")
+    : null;
+
+  function openCallForPapers() {
+    if (!callForPapersOverlay) return;
+    callForPapersOverlay.classList.add("is-open");
+    callForPapersOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    if (callForPapersCloseBtn) callForPapersCloseBtn.focus();
+  }
+
+  function closeCallForPapers() {
+    if (!callForPapersOverlay) return;
+    callForPapersOverlay.classList.remove("is-open");
+    callForPapersOverlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if (callForPapersOverlay) {
+    // Close when clicking outside the modal.
+    callForPapersOverlay.addEventListener("click", (event) => {
+      if (event.target === callForPapersOverlay) {
+        closeCallForPapers();
+      }
+    });
+
+    if (callForPapersCloseBtn) {
+      callForPapersCloseBtn.addEventListener("click", closeCallForPapers);
+    }
+
+    if (callForPapersOpenBtn) {
+      callForPapersOpenBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        openCallForPapers();
+      });
+    }
+
+    // Open automatically on page load.
+    openCallForPapers();
+  }
+
   function closeMobileNav() {
     if (mainNav) {
       mainNav.classList.remove("open");
